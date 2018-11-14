@@ -6,6 +6,7 @@ import { Text, View, StyleSheet,LayoutAnimation, TouchableOpacity, Alert } from 
 const DEFAULT_TIME = 10;
 const DEFAULT_COLOR = "#12887F";
 const DEFAULT_BG_COLOR_IN = '#FFFFFF';
+const DEFAULT_HEIGHT = 30;
 
 export default class CountdownBar extends React.Component {
   constructor() {
@@ -20,7 +21,8 @@ static propTypes = {
   time: PropTypes.number,
   BgColor: PropTypes.string,
   BgColorIn: PropTypes.string,
-  complete : PropTypes.func
+  complete : PropTypes.func,
+  barHeight: PropTypes.number
 };
   componentDidMount() {
     const {time} = this.props;
@@ -55,7 +57,7 @@ static propTypes = {
   return (
     <View style={styles.container}>
         <View style={styles.content}>
-          <View style={[styles.contentIn, {backgroundColor:this.props.BgColorIn}]}>
+          <View style={[styles.contentIn, {backgroundColor:this.props.BgColorIn}, {height: this.props.barHeight}]}>
             <View style={this.jewelStyle()}/>
           </View>
         </View>
@@ -66,7 +68,8 @@ static propTypes = {
 CountdownBar.defaultProps = {
   time: DEFAULT_TIME,
   BgColor: DEFAULT_COLOR,
-  BgColorIn:DEFAULT_BG_COLOR_IN
+  BgColorIn:DEFAULT_BG_COLOR_IN,
+  barHeight:DEFAULT_HEIGHT
 };
 const styles = StyleSheet.create({
   container: {
